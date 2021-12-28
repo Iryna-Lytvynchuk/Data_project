@@ -5,4 +5,4 @@ class DataForm(forms.ModelForm):
  
     class Meta:
         model = Data
-        fields = ['title', 'cover', 'result']
+        fields = ['title', 'cover']

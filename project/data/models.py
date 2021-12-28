@@ -21,6 +21,28 @@ class Data(models.Model):
     
     def save(self, *args, **kwargs):
         
+        labels =["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+
+        img = Image.open(self.cover)
+        img = image.img_to_array(img)
+        new_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        dim = (32,32)
+        resized = cv2.resize(new_img, dim, interpolation=cv2.INTER_AREA)
+        img = np.expand_dims(resized, axis=0)
+        img = img/255
+
+        file_model = os.path.join(settings.BASE_DIR,'CNN_2_CIFAR10.h5')
+        graph = tf.compat.v1.get_default_graph()
+
+        with graph.as_default():
+            model = load_model(file_model)
+            predictions = model.predict(img)
+        pred = np.argmax(predictions)
+        self.result = labels[pred]
+        print(f'classified as {self.result}')
+
+
+        '''
         class_dict = {'airplane': 0,
             'automobile': 1,
             'bird': 2,
@@ -42,7 +64,7 @@ class Data(models.Model):
         img = img/255
 
         
-        file_model = os.path.join(settings.BASE_DIR,'CNN_model.h5')
+        file_model = os.path.join(settings.BASE_DIR,'CNN_2_CIFAR10.h5')
         graph = tf.compat.v1.get_default_graph()
 
         with graph.as_default():
@@ -50,10 +72,10 @@ class Data(models.Model):
             preds = model.predict(img)
         preds = preds.flatten()
         m = max(preds)
+
         for index, item in enumerate(preds):
             if item == m:
-                print(m)
                 self.result = class_names[index]
                 print(f'classified as {self.result}')
-        
+        '''        
         return super().save(*args, **kwargs)
