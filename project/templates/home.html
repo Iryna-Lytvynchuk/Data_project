@@ -4,6 +4,7 @@
   {% for data in object_list %}
     <h2>{{ data.title }}</h2>
     <img src="{{ data.cover.url}}" alt="{{ data.title }}">
+    <p><a href="{% url 'image_delete' data.pk %}">Delete Image</a></p>
     <h2>{{ data.result }}</h2>
   {% endfor %}
 </ul>

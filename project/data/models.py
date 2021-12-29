@@ -14,7 +14,7 @@ global graph,model
 class Data(models.Model):
     title = models.TextField()
     cover = models.ImageField(upload_to='images/')
-    result = models.CharField(max_length=2, blank=True)
+    result = models.CharField(max_length=20, blank=True)
  
     def __str__(self):
         return self.title
