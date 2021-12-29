@@ -1,4 +1,7 @@
-<!-- templates/home.html -->
+{% extends "main.html" %}
+
+{% block content %}
+<div>
 <h1>Django Image Uploading</h1>
 <ul>
   {% for data in object_list %}
@@ -8,3 +11,5 @@
     <h2>{{ data.result }}</h2>
   {% endfor %}
 </ul>
+</div>
+{% endblock %}

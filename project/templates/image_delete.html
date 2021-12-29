@@ -1,9 +1,11 @@
-<!-- templates/image_delete.html -->
+{% extends "main.html" %}
 
 {% block content %}
+<div>
     <h1>Delete image</h1>
     <form action="" method="post">{% csrf_token %}
       <p>Are you sure you want to delete "{{ data.title }}"?</p>
       <input type="submit" value="Confirm" />
     </form>
-{% endblock content %}
+</div>
+{% endblock %}
