@@ -1,9 +1,17 @@
-<!-- templates/home.html -->
+{% extends "main.html" %}
+
+{% block content %}
+<div>
 <h1>Django Image Uploading</h1>
+<hr>
 <ul>
   {% for data in object_list %}
     <h2>{{ data.title }}</h2>
     <img src="{{ data.cover.url}}" alt="{{ data.title }}">
-    <h2>{{ data.result }}</h2>
+    <p><a href="{% url 'image_delete' data.pk %}">Delete Image</a></p>
+    <h3>{{ data.result }}</h3>
+    <hr>
   {% endfor %}
 </ul>
+</div>
+{% endblock %}
