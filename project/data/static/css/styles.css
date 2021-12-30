@@ -61,6 +61,7 @@ main .features {
   
 main .features h1 {
     font-size: 50px;
+    color: rgb(185, 83, 83);
   }
   
 main .features p {
@@ -89,6 +90,7 @@ input {
     align-items: center;
     justify-content: center;
     padding-left: 5%;
+    font-size: 10px;
   }
   
 input[type="submit"] {
@@ -104,3 +106,27 @@ input[type="submit"] {
 button {
     width: 200px;
   }
+
+div {
+     margin-left: 300px;
+
+}
+
+div h1 {
+  font-size: 50px;
+  color: rgb(185, 83, 83);
+}
+
+div h3 {
+  font-size: 20px;
+  color: rgb(109, 229, 238);
+}
+
+hr {
+  border: none;
+  background-color: rgb(123, 255, 0);
+  color: rgb(123, 255, 0);
+  height: 10px;
+  width: 700px;
+ }
+
