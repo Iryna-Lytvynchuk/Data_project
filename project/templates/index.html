@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+  <aside>
+    <ul>
+		<li><a href="{% url 'data:image' %}">* ADD IMAGE</a></li>
+	</ul>
+  </aside>
+  <main>
+<div>
+<h1>Please upload an image</h1>
+<hr>
+<form action= "{% url 'data:image' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input name="image" type="file" placeholder = "Please upload images"><br>
+  <button type="submit" style = '...' value="Upload">upload</button>
+</form>
+</div>
+
+</main>
+</body>
+</html>

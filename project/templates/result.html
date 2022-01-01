@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+  <aside>
+    <ul>
+		<li><a href="{% url 'data:image' %}">* ADD IMAGE</a></li>
+	</ul>
+  </aside>
+  <main>
+      <div>
+    <h1>Keras Model Prediction results</h1>
+    <h2>The prediction results is: {{ result }}</h2>
+    <img src = {% static "media/temp.png" %}  width="500px">
+</div>
+  </main>
+</body>
+</html>
+

@@ -1,8 +1,4 @@
 from django import forms
-from .models import Data
- 
-class DataForm(forms.ModelForm):
- 
-    class Meta:
-        model = Data
-        fields = ['title', 'cover']
+
+class UploadFileForm(forms.Form):
+    image = forms.ImageField()
