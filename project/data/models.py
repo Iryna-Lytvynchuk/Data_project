@@ -8,17 +8,7 @@ import cv2, os
 import numpy as np
 import tensorflow as tf
 from django.conf import settings
-
-global model
-
-file_model = os.path.join(settings.BASE_DIR,'CNN_2_CIFAR10.h5')
-g1 = tf.Graph()
-sess1 = tf.compat.v1.Session(graph=g1)
-
-with sess1.as_default():
-    with g1.as_default():
-        tf.compat.v1.global_variables_initializer().run()
-        model = load_model(file_model)
+import cnn.models as cnn
 
 def predict(img_path):
     img = image.load_img(img_path, target_size=(32,32))
@@ -31,9 +21,9 @@ def predict(img_path):
 
     labels =["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
     
-    with sess1.as_default():
-        with sess1.graph.as_default():
-            preds = model.predict(img)
+    with cnn.sess1.as_default():
+        with cnn.sess1.graph.as_default():
+            preds = cnn.model.predict(img)
             predictions = np.argmax(preds)
             result = labels[predictions]
             print(f'classified as {result}')
