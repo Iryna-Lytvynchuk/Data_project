@@ -1,6 +1,6 @@
 from django.db import models
 from tensorflow.keras.models import load_model
-import cv2, os
+import os
 import numpy as np
 import tensorflow as tf
 from django.conf import settings

@@ -1,15 +1,20 @@
+from django.conf import settings
 from django.shortcuts import render
 from .models import predict
 from django.urls import reverse_lazy
 from .forms import UploadFileForm
+import os
 
 def index(request):
     return render(request, "index.html")
 
 def save_uploaded_image(f,name):
-    with open("data/static/media/"+ "temp.png", "wb+") as destination:
+    image_path = os.path.join(settings.MEDIA_ROOT, name)
+    with open(image_path, "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
+
+    return image_path
 
 
 def predict_Image(request):
@@ -17,12 +22,11 @@ def predict_Image(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             image=request.FILES['image']
-            save_uploaded_image(image, image._name)
+            image_path = save_uploaded_image(image, image._name)
 
-            result = predict("data/static/media/"+ "temp.png")
+            result = predict(image_path)
 
-
-            resp = {'data':"http://127.0.0.1:8000/static/media/"+ image._name , 'result': result}
+            resp = {'image': settings.MEDIA_URL + image._name , 'result': result}
             return render(request, "result.html", resp)
 
     else:
