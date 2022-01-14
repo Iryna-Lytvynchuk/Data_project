@@ -1,6 +1,7 @@
 from keras.preprocessing import image
 import numpy as np
-import cnn.models as cnn
+from data.apps import DataConfig
+
 
 def predict(img_path):
     img = image.load_img(img_path, target_size=(32,32))
@@ -9,10 +10,8 @@ def predict(img_path):
     img = img/255
 
     labels =["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
-    with cnn.sess1.as_default():
-        with cnn.sess1.graph.as_default():
-            preds = cnn.model.predict(img)
-            predictions = np.argmax(preds)
-            result = labels[predictions]
-            print(f'classified as {result}')
+    preds = DataConfig.model.predict(img)
+    predictions = np.argmax(preds)
+    result = labels[predictions]
+    print(f'classified as {result}')
     return(result)
