@@ -2,3 +2,4 @@
 db.sqlite3
 CNN_2_CIFAR10.ipynb
 venv/
+media/
